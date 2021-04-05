@@ -19,7 +19,7 @@ Paste your AWS credentials on the `.env` file.
 
 Make a AWS Bucket with an *Input* and an *output* folder in it
 
-copy the name of the bucket you just created to `BUCKET_NAME` field in `constants.js`.
+Copy the name of the bucket you just created to `BUCKET_NAME` field in `constants.js`.
 do the same for the input and output folders into `INPUT_FOLDER` and `OUTPUT_FOLDER`.
 
 You may skip the collection of the data (step 4) if you want to.
@@ -30,8 +30,6 @@ To do so, in your input folder you can upload the content from temp file *OR* th
 --------------------
 There are 2 way of collecting data from the Twitter API (there are more, but i'll stick with this two for now):
 
-- Stream
-- Recent Search
 
 #### Stream
 With the stream option you connects with the Twitter API and listen to a tweet that complies with the rule you've set up.
@@ -74,7 +72,7 @@ To start your recent seatch data gathering just:
 node tweet-search.js
 ```
 
-it will compile all tweets for each page of the results into a `.csv` file (named as configured in `constants.js`) and then upload this file to the S# bucket previously configured.
+It will compile all tweets for each page of the results into a `.csv` file (named as configured in `constants.js`) and then upload this file to the S# bucket previously configured.
 
 
 ### Step 5 - Do the Thing
