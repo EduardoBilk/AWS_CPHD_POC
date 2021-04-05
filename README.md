@@ -5,13 +5,11 @@
 Rename `.env.structure` to `.env`
 
 
-
 ### Step 2 - Getting the Twitter BEARER TOKEN
 --------------------
 Acess [Twitter Dev](https://developer.twitter.com/) portal and create yourself a Bearer token to consume from the twitter API.
 
 Paste your token on the `.env` file.
-
 
 
 ### Step 3 - AWS Setup
@@ -28,7 +26,6 @@ You may skip the collection of the data (step 4) if you want to.
 To do so, in your input folder you can upload the content from temp file *OR* the tweets.csv.
 
 
-
 ### Step 4 - Collect the data
 --------------------
 There are 2 way of collecting data from the Twitter API (there are more, but i'll stick with this two for now):
@@ -36,7 +33,7 @@ There are 2 way of collecting data from the Twitter API (there are more, but i'l
 - Stream
 - Recent Search
 
-##### Stream
+#### Stream
 With the stream option you connects with the Twitter API and listen to a tweet that complies with the rule you've set up.
 You can read more about Rule's definition [here](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule).
 
@@ -58,7 +55,7 @@ node tweet-stream.js
 
 Each tweet caught on the stream will be saved in the `temp` folder as a `.csv` file and will be sent to the S3 bucket previously configured.
 
-##### Recent Search
+#### Recent Search
 Twitter also gives us the possibility to search for tweets in a 7-day window.
 For this you must pass your parameter of the search in the body of your request.
 
@@ -80,7 +77,6 @@ node tweet-search.js
 it will compile all tweets for each page of the results into a `.csv` file (named as configured in `constants.js`) and then upload this file to the S# bucket previously configured.
 
 
-
 ### Step 5 - Do the Thing
 --------------------
 Now you are ready to set up your analysis on AWS Comprehend.
@@ -99,7 +95,6 @@ Now you are ready to set up your analysis on AWS Comprehend.
 You should wait until the analysis is completed, you can follow its progress on the Analysis Job dashboard.
 
 
-
 ### Step 6 - Analyse it!
 --------------------
 AWS comprehend will create a folder into you output folder.
@@ -111,5 +106,6 @@ Now you can see a brief analysis on your console:
 node output-analyser.js
 ```
 
+That's it.
 
 
