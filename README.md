@@ -1,10 +1,10 @@
 # POC AWS Comprehend
 --------------------
 ### Step 1 - Setting up ENV variables
-Rename `.env.structure`to `.env`
+Rename `.env.structure` to `.env`
 
 ### Step 2 - Getting the Twitter BEARER TOKEN
-Acess (Twitter Dev)[https://developer.twitter.com/] portal and create yourself a Bearer token to consume from the twitter API.
+Acess [Twitter Dev](https://developer.twitter.com/) portal and create yourself a Bearer token to consume from the twitter API.
 
 Paste your token on the `.env` file.
 
@@ -29,7 +29,7 @@ There are 2 way of collecting data from the Twitter API (there are more, but i'l
 
 ##### Stream
 With the stream option you connects with the Twitter API and listen to a tweet that complies with the rule you've set up.
-You can read more about Rule's definition (here)[https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule].
+You can read more about Rule's definition [here](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule).
 
 In the `tweet-stream.js` file you can change the rule to fit your needs.
 
