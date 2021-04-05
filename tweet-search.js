@@ -1,31 +1,26 @@
 require('dotenv').config();
+const {
+    TWITTER_API_END_POINT,
+    FILENAME,
+    BUCKET_NAME,
+    INPUT_FOLDER,
+    s3
+ } = require('./constants.js');
 const needle = require('needle');
 const fs = require('fs');
-const AWS = require('aws-sdk');
-const FILENAME = 'tweets.csv'
-const BUCKET_NAME = 'test-comprehend-02'
-
-AWS.config.update({
-    accessKeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_SECRET
-});
-const s3 = new AWS.S3();
 
 const token = process.env.BEARER_TOKEN;
-
-const endpointUrl = 'https://api.twitter.com/2/tweets/search/recent'
 
 async function getRequest(nextToken) {
 
     const params = {
         'query': '"Snyder Cut" lang:pt -is:retweet -has:links',
         'tweet.fields': 'author_id',
-        'expansions': 'geo.place_id',
         'max_results': 100
     }
     if (nextToken) params.next_token = nextToken
 
-    const res = await needle('get', endpointUrl, params, {
+    const res = await needle('get', TWITTER_API_END_POINT, params, {
         headers: {
             "User-Agent": "v2FullArchiveJS",
             "authorization": `Bearer ${token}`
@@ -52,7 +47,7 @@ const uploadFile = () => {
 
     const params = {
         Bucket: BUCKET_NAME,
-        Key: `input-comprehend/${FILENAME}`, // File name you want to save as in S3
+        Key: `${INPUT_FOLDER}/${FILENAME}`, // File name you want to save as in S3
         Body: fileContent
     };
     s3.upload(params, function(err, data) {

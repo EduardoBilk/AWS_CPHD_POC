@@ -1,23 +1,13 @@
 require('dotenv').config();
+const { CPHD_ID, BUCKET_NAME, OUTPUT_FOLDER, s3 } = require('./constants.js');
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const decompress = require('decompress');
-AWS.config.update({
-    accessKeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_SECRET
-});
-const s3 = new AWS.S3();
 
-
-// Definição das constantes conforme S3
-// const CPHD_ID = '667310078461-SENTIMENT-9865f33d3a5ef1f1035883a5eec2e137' //<- file
-const CPHD_ID = '667310078461-SENTIMENT-0239fdaaf0508c14689c9c32bbde63bb'   // <- Stream
-
-const BUCKET_NAME = 'test-comprehend-02'
 
 //Pega o arquivo, descompacta (tar.gz) e analiza
 s3.getObject({ 
-    Bucket: BUCKET_NAME, Key: `output-comprehend/${CPHD_ID}/output/output.tar.gz` },
+    Bucket: BUCKET_NAME, Key: `${OUTPUT_FOLDER}/${CPHD_ID}/output/output.tar.gz` },
     function (error, data) {
       if (error != null) {
         console.error("Failed to retrieve an object: " + error);

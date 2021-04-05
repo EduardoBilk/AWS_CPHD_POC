@@ -1,19 +1,15 @@
 require('dotenv').config();
+const { 
+    TWITTER_API_RULES_POINT,
+    TWITTER_API_STREAM_POINT,
+    BUCKET_NAME,
+    INPUT_FOLDER,
+    s3
+} = require('./constants.js');
 const needle = require('needle');
 const fs = require('fs')
-const AWS = require('aws-sdk');
-const BUCKET_NAME = 'test-comprehend-02'
 
-AWS.config.update({
-    accessKeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_SECRET
-});
-
-const s3 = new AWS.S3();
 const token = process.env.BEARER_TOKEN;
-
-const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules';
-const streamURL = 'https://api.twitter.com/2/tweets/search/stream';
 
 const rules = [
     {
@@ -23,7 +19,7 @@ const rules = [
 ];
 
 async function getAllRules() {
-    const response = await needle('get', rulesURL, {
+    const response = await needle('get', TWITTER_API_RULES_POINT, {
         headers: {
             "authorization": `Bearer ${token}`
         }
@@ -46,7 +42,7 @@ async function deleteAllRules(rules) {
             "ids": ids
         }
     }
-    const response = await needle('post', rulesURL, data, {
+    const response = await needle('post', TWITTER_API_RULES_POINT, data, {
         headers: {
             "content-type": "application/json",
             "authorization": `Bearer ${token}`
@@ -63,7 +59,7 @@ async function setRules() {
     const data = {
         "add": rules
     }
-    const response = await needle('post', rulesURL, data, {
+    const response = await needle('post', TWITTER_API_RULES_POINT, data, {
         headers: {
             "content-type": "application/json",
             "authorization": `Bearer ${token}`
@@ -77,7 +73,7 @@ async function setRules() {
 
 function streamConnect(retryAttempt) {
 
-    const stream = needle.get(streamURL, {
+    const stream = needle.get(TWITTER_API_STREAM_POINT, {
         headers: {
             "User-Agent": "v2FilterStreamJS",
             "Authorization": `Bearer ${token}`
@@ -123,7 +119,7 @@ const uploadTweet = (tweet) => {
 
     const params = {
         Bucket: BUCKET_NAME,
-        Key: `input-stream-comprehend/${tweet.data.id}.csv`,
+        Key: `${INPUT_FOLDER}/${tweet.data.id}.csv`,
         Body: fileContent
     };
     s3.upload(params, function(err, data) {
