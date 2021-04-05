@@ -54,7 +54,7 @@ const rules = [
 
 To start your stream data gathering just:
 ```
-node tweet-stream.js
+npm run stream
 ```
 
 Each tweet caught on the stream will be saved in the `temp` folder as a `.csv` file and will be sent to the S3 bucket previously configured.
@@ -75,7 +75,7 @@ const params = {
 
 To start your recent seatch data gathering just:
 ```
-node tweet-search.js
+npm run search
 ```
 
 It will compile all tweets for each page of the results into a `.csv` file (named as configured in `constants.js`) and then upload this file to the S# bucket previously configured.
@@ -107,7 +107,7 @@ Copy that folders name and copy it to `CPHD_ID`field on `constants.js`
 Now you can see a brief analysis on your console:
 
 ```
-node output-analyser.js
+npm run analyse
 ```
 
 That's it.

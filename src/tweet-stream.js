@@ -112,10 +112,10 @@ function streamConnect(retryAttempt) {
 }
 const uploadTweet = (tweet) => {
 
-    fs.writeFileSync(`temp/${tweet.data.id}.csv`,tweet.data.text.replace(/\n/g,' ').trim(), 'utf8')
+    fs.writeFileSync(`../temp/${tweet.data.id}.csv`,tweet.data.text.replace(/\n/g,' ').trim(), 'utf8')
     console.log(`${tweet.data.id}.csv, created.`)
 
-    const fileContent = fs.readFileSync(`temp/${tweet.data.id}.csv`, 'utf8')
+    const fileContent = fs.readFileSync(`../temp/${tweet.data.id}.csv`, 'utf8')
 
     const params = {
         Bucket: BUCKET_NAME,

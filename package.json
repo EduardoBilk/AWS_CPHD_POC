@@ -4,7 +4,10 @@
   "description": "",
   "main": "tweet-search.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "search": "node tweet-search.js",
+    "stream": "node tweet-stream.js",
+    "analyse": "node output-analyzer.js"
+
   },
   "keywords": [],
   "author": "",
