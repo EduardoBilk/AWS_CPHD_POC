@@ -5,11 +5,13 @@
 Rename `.env.structure` to `.env`
 
 
+
 ### Step 2 - Getting the Twitter BEARER TOKEN
 --------------------
 Acess [Twitter Dev](https://developer.twitter.com/) portal and create yourself a Bearer token to consume from the twitter API.
 
 Paste your token on the `.env` file.
+
 
 
 ### Step 3 - AWS Setup
@@ -24,6 +26,7 @@ do the same for the input and output folders into `INPUT_FOLDER` and `OUTPUT_FOL
 
 You may skip the collection of the data (step 4) if you want to.
 To do so, in your input folder you can upload the content from temp file *OR* the tweets.csv.
+
 
 
 ### Step 4 - Collect the data
@@ -77,6 +80,7 @@ node tweet-search.js
 it will compile all tweets for each page of the results into a `.csv` file (named as configured in `constants.js`) and then upload this file to the S# bucket previously configured.
 
 
+
 ### Step 5 - Do the Thing
 --------------------
 Now you are ready to set up your analysis on AWS Comprehend.
@@ -93,6 +97,7 @@ Now you are ready to set up your analysis on AWS Comprehend.
 10. Done!
 
 You should wait until the analysis is completed, you can follow its progress on the Analysis Job dashboard.
+
 
 
 ### Step 6 - Analyse it!
