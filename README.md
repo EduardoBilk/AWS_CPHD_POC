@@ -1,7 +1,13 @@
 # POC AWS Comprehend
 
-### Step 1 - Setting up ENV variables
+### Step 1 - Setting things up
 --------------------
+
+Install dependencies
+```
+npm i
+```
+
 Rename `.env.structure` to `.env`
 
 
