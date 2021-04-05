@@ -1,16 +1,19 @@
 # POC AWS Comprehend
---------------------
+
 ### Step 1 - Setting up ENV variables
+--------------------
 Rename `.env.structure` to `.env`
 
 ### Step 2 - Getting the Twitter BEARER TOKEN
+--------------------
 Acess [Twitter Dev](https://developer.twitter.com/) portal and create yourself a Bearer token to consume from the twitter API.
 
 Paste your token on the `.env` file.
 
 ### Step 3 - AWS Setup
+--------------------
 
-Paste your credentials on the `.env` file.
+Paste your AWS credentials on the `.env` file.
 
 Make a AWS Bucket with an *Input* and an *output* folder in it
 
@@ -21,7 +24,7 @@ You may skip the collection of the data (step 4) if you want to.
 To do so, in your input folder you can upload the content from temp file *OR* the tweets.csv.
 
 ### Step 4 - Collect the data
-
+--------------------
 There are 2 way of collecting data from the Twitter API (there are more, but i'll stick with this two for now):
 
 - Stream
@@ -71,6 +74,7 @@ node tweet-search.js
 it will compile all tweets for each page of the results into a `.csv` file (named as configured in `constants.js`) and then upload this file to the S# bucket previously configured.
 
 ### Step 5 - Do the Thing
+--------------------
 Now you are ready to set up your analysis on AWS Comprehend.
 
 1. Lauch it from yout console (https://console.aws.amazon.com/comprehend/);
@@ -86,8 +90,8 @@ Now you are ready to set up your analysis on AWS Comprehend.
 
 You should wait until the analysis is completed, you can follow its progress on the Analysis Job dashboard.
 
-### Step 6 - Analyse that!
-
+### Step 6 - Analyse it!
+--------------------
 AWS comprehend will create a folder into you output folder.
 Copy that folders name and copy it to `CPHD_ID`field on `constants.js`
 
